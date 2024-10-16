@@ -1,11 +1,16 @@
 import os
 os.system("cls")
 
-def suma_diccionario(dicc):
-    if not dicc:
-        return 0
-    clave, valor = dicc.popitem()
-    return valor + suma_diccionario(dicc)
+def permutaciones(cadena):
+    if len(cadena) == 1:
+        return [cadena]
+    
+    resultado = []
+    for i, letra in enumerate(cadena):
+        subcadena = cadena[:i] + cadena[i+1:]
+        for perm in permutaciones(subcadena):
+            resultado.append(letra + perm)
+    
+    return resultado
 
-resultado = suma_diccionario({'a': 1, 'b': 2, 'c': 3})
-print(resultado)  
+print(permutaciones("abc")) 
